@@ -18,6 +18,8 @@ startBtn.addEventListener('click', () => {
 // ITERATION 2: Start Countdown
 function startCountdown() {
 
+  if(remainingTime <= 0) remainingTime = DURATION;
+
   console.log("startCountdown called!");
 
   // Your code goes here ...
@@ -38,6 +40,7 @@ function startCountdown() {
     }
     remainingTime --;
   }, 1000)
+  return 
 }
 
 
@@ -68,4 +71,5 @@ function showToast(message) {
 
 
   
+
 
