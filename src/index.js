@@ -1,6 +1,7 @@
 const DURATION = 10; // 10 seconds
 let remainingTime = DURATION; // Countdown starting from 10
 let timer = null; // Variable to store the interval
+let cardTimeOut = null; // Variable to store the card timeout
 
 
 
@@ -23,12 +24,19 @@ function startCountdown() {
 
   const remainingSeconds = document.getElementById('time')
   timer = setInterval(() =>{
-    remainingTime --;
     remainingSeconds.innerHTML = remainingTime
     if(remainingTime === 0){
-      showToast("asdas");
+      showToast("Lift off! 🚀");
       clearInterval(timer);
     }
+    
+    if(remainingTime === 10){
+      showToast("⏰ Final countdown! ⏰");
+    }
+    if(remainingTime === 5){
+      showToast("Start the engines! 💥");
+    }
+    remainingTime --;
   }, 1000)
 }
 
@@ -41,19 +49,23 @@ function showToast(message) {
   // Your code goes here ...
   toastCard = document.querySelector('div#toast');
   toastCard.classList.add('show')
-  setTimeout(() => toastCard.classList.remove('show'), 3000);
+  toastCard.querySelector('#toast-message').innerHTML = message;
   
-
-
-
   // BONUS: ITERATION 4: TOAST CLOSE BUTTON
-
+  
   // Your code goes here ...
-  // function hideToast(toast) {
-  //   toast.style.display = 'none';}
+  
+  
   let closeToastBtn = document.querySelector('#close-toast');
   closeToastBtn.addEventListener('click', () => {
-    // clearTimeout(cardTimeOut)
-    toast.style.display = 'none'
+    clearTimeout(cardTimeOut)
+    //toast.style.display = "none"
   })
+  cardTimeOut = setTimeout(() => toastCard.classList.remove('show'), 3000);
 }
+  
+// BONUS: INTERATION 5: TOGGLE MESSAGES
+
+
+  
+
